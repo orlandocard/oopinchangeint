@@ -1,0 +1,13 @@
+**What's New? July 29, 2014: _Github hosting for source, Bintray hosting for downloads. The latest version, 1.06-rc2 has been released. See the Downloads link IN THE LOWER LEFT to download (the Downloads menu item above is deprecated)._
+
+Jul. 29, 2014: Version 1.06-rc2 has been released. Fixed a bug in the MEGA support. Thanks JRHelbert!. This support has not been tested in this library; if you do use it with the MEGA please let me know. Thanks. Look at the Release Notes for the download or read the RELEASE NOTES file in the zipfile for more information.**
+
+The ooPinChangeInt library implements Pin Change interrupts for the Arduino environment.  This library is derived from the PinChangeInt library at http://code.google.com/p/arduino-pinchangeint/.  It is a departure from the PinChangeInt library by being more object-oriented.  The library depends on an interface class called CallBackInterface.  Your class subclasses the CallBackInterface and provides a method called "cbmethod()".  It's less scary than it sounds; see the example sketch in the Wiki.
+
+What are Pin Change interrupts? The ATmega328p processor at the heart of the Arduino UNO/Duemilanove has two different kinds of interrupts: “external”, and “pin change”. There are only two external interrupt pins, INT0 and INT1 mapped to Arduino pins 2 and 3. The triggers are interpreted by hardware, and the interrupt is very fast.
+
+On the other hand the pin change interrupts can be enabled on any or all of the Arduino's signal pins. They are triggered equally on RISING or FALLING signal edges, and the pins are grouped in "ports", so it is up to the interrupt code to set the proper pins to receive interrupts and to handle it properly. Thus the job of resolving the action on a pin change interrupt is more complicated, at the cost of speed. The ooPinChangeInt library is designed to handle the Arduino's pin change interrupts as quickly and reasonably as possible.
+
+The ooPinChangeInt library also means to bring the benefits of object oriented techniques: classic use of objects and data encapsulation.  When the Pin Change Interrupt occurs the attached object's cbmethod() is called.  This means that all the members of the object are available to the cbmethod at the time of the interrupt.  Thus, if you have member variables such as the object's name, id number, state, etc., it's easy for the method to get those values because everything is encapsulated within the object.  How cool is that?  Check out the Wiki- very cool.  Who says the Arduino doesn't run true C++?
+
+Beginning with version 1.02, all the code is put in the .h file, to allow the programmer to configure it through their sketch for minimum ram usage.
